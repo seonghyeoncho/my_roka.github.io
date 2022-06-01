@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      let startDate = new Date(2022, 0, 3);
+      let endDate = new Date(2023, 6, 2);
+      let totalDate = endDate - startDate;
+
+      var x = setInterval(function() {
+        let today = new Date();
+        let timeDiff = today - startDate;
+        let te = (timeDiff / totalDate) * 100;
+        let color = '';
+        let time = (timeDiff / totalDate) * 100;
+        let com = "";
+
+      
+        if (te < 30) color = 'red';
+        else if (te >= 30 && te < 80) color = 'orange';
+        else color = 'green';
+
+        if (today - new Date(2022, 9, 00) >= 0 && today - new Date(2022, 3, 00) <= 0) com ="지금은 상병";
+        else if (today - new Date(2022, 9, 00) < 0 && today - new Date(2022, 3, 00) > 0 ) com = "아직 일병..";
+        else com = "이젠 병장 얼마 안 남았다..";
+
+
+        document.getElementById("gauge").style.backgroundColor = color;
+        document.getElementById("gauge").style.height = `${te}px`;
+        document.getElementById("time").innerHTML = time;
+        document.getElementById("comment").innerHTML = com;
+        
+      }, 100);
+    </script>
+    <style>
+      body {
+        margin: 0px;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        flex-direction: column;
+      }
+      #battery_main {
+        height: 100px;
+        display: flex;
+        align-items: flex-end;
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+      #gauge {
+        width: 40px;
+        border-radius: 0 0 4px 4px;
+      }
+      #persentage {
+        width: 150px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      #battery {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #battery_top {
+        border: 1px solid black;
+        height: 2px;
+        width: 20px;
+        border-radius: 4px 4px 0 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>성현이 군생활은</div>
+      <div id="battery">
+        <div id="battery_top"></div>
+        <div id="battery_main">
+          <div id="gauge"></div>
+        </div>
+      </div>
+      <div id="persentage">
+        <div id="time"></div>
+        <div>%</div>
+      </div>
+      <div id="comment"></div>
+    </div>
+  </body>
+</html>
